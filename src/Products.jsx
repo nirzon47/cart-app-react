@@ -1,13 +1,27 @@
 import ProductItem from './ProductItem'
 import Total from './Total'
 import productsList from './productsList.json'
+import EmptyMessage from './EmptyMessage'
 
 import { useState } from 'react'
 
 const Products = () => {
 	const [flag, setFlag] = useState(false)
+	let empty = false
 
 	let totalPrice = 0.0
+
+	const getCartCount = () => {
+		let count = 0
+
+		productsList.forEach((product) => {
+			if (product.quantity > 0) {
+				count++
+			}
+		})
+
+		return count
+	}
 
 	const getPrice = () => {
 		productsList.forEach((product) => {
@@ -17,7 +31,7 @@ const Products = () => {
 		})
 
 		if (totalPrice === 0.0) {
-			totalPrice = 0.0
+			empty = true
 		}
 	}
 
@@ -28,16 +42,19 @@ const Products = () => {
 			productsList[id].quantity = 0
 			getPrice()
 			setFlag(!flag)
+			document.getElementById('cart-count').textContent = getCartCount()
 
 			return
 		}
 
-		getPrice()
 		productsList[id].quantity = quantity
+		document.getElementById('cart-count').textContent = getCartCount()
 		setFlag(!flag)
 	}
 
-	return (
+	return empty ? (
+		<EmptyMessage />
+	) : (
 		<>
 			<div className='flex flex-col gap-8'>
 				{productsList.map(

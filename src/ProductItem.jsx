@@ -2,21 +2,24 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
 import { useState } from 'react'
 
-const ProductItem = ({ name, src, price }) => {
+const ProductItem = ({ id, name, src, price, updateObject }) => {
 	const [quantity, setQuantity] = useState(1)
 
 	const increaseQuantity = () => {
-		setQuantity(quantity + 1)
+		const updatedQuantity = Number(quantity) + 1
+		setQuantity(updatedQuantity)
+		updateObject(id, updatedQuantity)
 	}
 
 	const decreaseQuantity = () => {
-		if (quantity > 1) {
-			setQuantity(quantity - 1)
-		} else {
-		}
+		const updatedQuantity = Number(quantity) - 1
+		setQuantity(updatedQuantity)
+		updateObject(id, updatedQuantity)
 	}
 
-	const removeItem = () => {}
+	const removeItem = () => {
+		updateObject(id, 'remove')
+	}
 
 	return (
 		<div className='flex justify-between w-[30rem]'>
@@ -25,7 +28,10 @@ const ProductItem = ({ name, src, price }) => {
 				<div>
 					<h3 className='text-lg font-semibold'>{name}</h3>
 					<p className='font-medium text-zinc-500'>{price}</p>
-					<button className='mt-2 text-red-500 duration-150 hover:text-red-700'>
+					<button
+						className='mt-2 text-red-500 duration-150 hover:text-red-700'
+						onClick={removeItem}
+					>
 						Remove
 					</button>
 				</div>

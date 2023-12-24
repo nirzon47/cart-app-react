@@ -56,7 +56,7 @@ const Products = () => {
 		<EmptyMessage />
 	) : (
 		<>
-			<div className='flex flex-col gap-8'>
+			<div className='flex flex-col gap-8 px-2'>
 				{productsList.map(
 					(product) =>
 						product.quantity > 0 && (

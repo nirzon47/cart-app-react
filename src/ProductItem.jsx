@@ -22,9 +22,9 @@ const ProductItem = ({ id, name, src, price, updateObject }) => {
 	}
 
 	return (
-		<div className='flex justify-between w-[30rem]'>
-			<div className='flex gap-8'>
-				<img src={src} alt={name} className='w-28' />
+		<div className='flex justify-between md:w-[30rem]'>
+			<div className='flex items-center gap-8'>
+				<img src={src} alt={name} className='h-20 md:h-auto md:w-28' />
 				<div>
 					<h3 className='text-lg font-semibold'>{name}</h3>
 					<p className='font-medium text-zinc-500'>{price}</p>

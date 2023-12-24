@@ -1,17 +1,13 @@
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
-const ProductItem = () => {
+const ProductItem = ({ name, src, price }) => {
 	return (
 		<div className='flex justify-between w-[30rem]'>
 			<div className='flex gap-8'>
-				<img
-					src='https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s23-ultra-5g-1.jpg'
-					alt='Samsung Galaxy S23 Ultra'
-					className='w-28'
-				/>
+				<img src={src} alt={name} className='w-28' />
 				<div>
-					<h3 className='text-lg font-semibold'>Samsung Galaxy S23 Ultra</h3>
-					<p className='font-medium text-zinc-500'>$1,299</p>
+					<h3 className='text-lg font-semibold'>{name}</h3>
+					<p className='font-medium text-zinc-500'>{price}</p>
 					<button className='mt-2 text-red-500 duration-150 hover:text-red-700'>
 						Remove
 					</button>

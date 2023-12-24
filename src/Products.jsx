@@ -69,7 +69,11 @@ const Products = () => {
 						)
 				)}
 			</div>
-			<Total totalPrice={totalPrice} />
+			<Total
+				totalPrice={totalPrice}
+				productsList={productsList}
+				updateObject={updateObject}
+			/>
 		</>
 	)
 }
